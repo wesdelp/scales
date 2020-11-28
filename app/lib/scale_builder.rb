@@ -69,6 +69,7 @@ class ScaleBuilder
     chords = build_chords(scale)
 
     {
+      name: "#{@root} #{@type}",
       scale: scale,
       chords: chords
     }

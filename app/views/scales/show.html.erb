@@ -1,9 +1,28 @@
 <h1>Scales</h1>
+<h2><%= @scale[:name] %></h2>
 
-<table>
-<% @chords.each do |chord| %>
-  <tr>
-    <td><%= chord[:name] %></td>
-  <tr>
-  <% end %>
-</table>
+<ul class="piano set">
+  <li class="key white c <%= @scale[:scale].include?(0) ? 'active' : '' %>"></li>
+  <li class="key black cs <%= @scale[:scale].include?(1) ? 'active' : '' %>"></li>
+  <li class="key white d <%= @scale[:scale].include?(2) ? 'active' : '' %>"></li>
+  <li class="key black ds <%= @scale[:scale].include?(3) ? 'active' : '' %>"></li>
+  <li class="key white e <%= @scale[:scale].include?(4) ? 'active' : '' %>"></li>
+  <li class="key white f <%= @scale[:scale].include?(5) ? 'active' : '' %>"></li>
+  <li class="key black fs <%= @scale[:scale].include?(6) ? 'active' : '' %>"></li>
+  <li class="key white g <%= @scale[:scale].include?(7) ? 'active' : '' %>"></li>
+  <li class="key black gs <%= @scale[:scale].include?(8) ? 'active' : '' %>"></li>
+  <li class="key white a <%= @scale[:scale].include?(9) ? 'active' : '' %>"></li>
+  <li class="key black as <%= @scale[:scale].include?(10) ? 'active' : '' %>"></li>
+  <li class="key white b <%= @scale[:scale].include?(11) ? 'active' : '' %>"></li>
+</ul>
+
+<br>
+
+
+<h3>Chords</h3>
+
+<ul>
+<% @scale[:chords].each do |chord| %>
+  <li><%= "#{chord[:quality]} - #{chord[:name]}" %></li>
+<% end %>
+<ul>
