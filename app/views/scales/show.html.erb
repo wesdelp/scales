@@ -1,28 +1,49 @@
-<h1>Scales</h1>
-<h2><%= @scale[:name] %></h2>
+<div class="row">
+  <div class="column">
+    <h2>Scale</h2>
+    <ul class="piano set">
+      <li class="key white c <%= @scale[:scale].include?(0) ? 'active' : '' %>"></li>
+      <li class="key black cs <%= @scale[:scale].include?(1) ? 'active' : '' %>"></li>
+      <li class="key white d <%= @scale[:scale].include?(2) ? 'active' : '' %>"></li>
+      <li class="key black ds <%= @scale[:scale].include?(3) ? 'active' : '' %>"></li>
+      <li class="key white e <%= @scale[:scale].include?(4) ? 'active' : '' %>"></li>
+      <li class="key white f <%= @scale[:scale].include?(5) ? 'active' : '' %>"></li>
+      <li class="key black fs <%= @scale[:scale].include?(6) ? 'active' : '' %>"></li>
+      <li class="key white g <%= @scale[:scale].include?(7) ? 'active' : '' %>"></li>
+      <li class="key black gs <%= @scale[:scale].include?(8) ? 'active' : '' %>"></li>
+      <li class="key white a <%= @scale[:scale].include?(9) ? 'active' : '' %>"></li>
+      <li class="key black as <%= @scale[:scale].include?(10) ? 'active' : '' %>"></li>
+      <li class="key white b <%= @scale[:scale].include?(11) ? 'active' : '' %>"></li>
+    </ul>
+  </div>
 
-<ul class="piano set">
-  <li class="key white c <%= @scale[:scale].include?(0) ? 'active' : '' %>"></li>
-  <li class="key black cs <%= @scale[:scale].include?(1) ? 'active' : '' %>"></li>
-  <li class="key white d <%= @scale[:scale].include?(2) ? 'active' : '' %>"></li>
-  <li class="key black ds <%= @scale[:scale].include?(3) ? 'active' : '' %>"></li>
-  <li class="key white e <%= @scale[:scale].include?(4) ? 'active' : '' %>"></li>
-  <li class="key white f <%= @scale[:scale].include?(5) ? 'active' : '' %>"></li>
-  <li class="key black fs <%= @scale[:scale].include?(6) ? 'active' : '' %>"></li>
-  <li class="key white g <%= @scale[:scale].include?(7) ? 'active' : '' %>"></li>
-  <li class="key black gs <%= @scale[:scale].include?(8) ? 'active' : '' %>"></li>
-  <li class="key white a <%= @scale[:scale].include?(9) ? 'active' : '' %>"></li>
-  <li class="key black as <%= @scale[:scale].include?(10) ? 'active' : '' %>"></li>
-  <li class="key white b <%= @scale[:scale].include?(11) ? 'active' : '' %>"></li>
-</ul>
+  <div class="column">
+    <h2>Pentatonic</h2>
+    <ul class="piano set">
+      <li class="key white c <%= @scale[:pentatonic].include?(0) ? 'active' : '' %>"></li>
+      <li class="key black cs <%= @scale[:pentatonic].include?(1) ? 'active' : '' %>"></li>
+      <li class="key white d <%= @scale[:pentatonic].include?(2) ? 'active' : '' %>"></li>
+      <li class="key black ds <%= @scale[:pentatonic].include?(3) ? 'active' : '' %>"></li>
+      <li class="key white e <%= @scale[:pentatonic].include?(4) ? 'active' : '' %>"></li>
+      <li class="key white f <%= @scale[:pentatonic].include?(5) ? 'active' : '' %>"></li>
+      <li class="key black fs <%= @scale[:pentatonic].include?(6) ? 'active' : '' %>"></li>
+      <li class="key white g <%= @scale[:pentatonic].include?(7) ? 'active' : '' %>"></li>
+      <li class="key black gs <%= @scale[:pentatonic].include?(8) ? 'active' : '' %>"></li>
+      <li class="key white a <%= @scale[:pentatonic].include?(9) ? 'active' : '' %>"></li>
+      <li class="key black as <%= @scale[:pentatonic].include?(10) ? 'active' : '' %>"></li>
+      <li class="key white b <%= @scale[:pentatonic].include?(11) ? 'active' : '' %>"></li>
+    </ul>
+  </div>
+</div>
 
-<br>
+<br/>
 
+<div class="row">
+  <h3>Chords</h3>
 
-<h3>Chords</h3>
-
-<ul>
-<% @scale[:chords].each do |chord| %>
-  <li><%= "#{chord[:quality]} - #{chord[:name]}" %></li>
-<% end %>
-<ul>
+  <ul>
+  <% @scale[:chords].each do |chord| %>
+    <li><%= "#{chord[:quality]} - #{chord[:name]}" %></li>
+  <% end %>
+  <ul>
+</div>

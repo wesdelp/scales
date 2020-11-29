@@ -5,6 +5,8 @@ class ScaleBuilder
     triad: [0, 2, 4]
   }
 
+  PENTATONIC_NOTES = [0, 1, 2, 4, 5]
+
   WHOLE_STEP = 2
   HALF_STEP = 1
 
@@ -66,11 +68,13 @@ class ScaleBuilder
 
   def build
     scale = build_scale
+    pentatonic = PENTATONIC_NOTES.map { |i| scale[i] }
     chords = build_chords(scale)
 
     {
       name: "#{@root} #{@type}",
       scale: scale,
+      pentatonic: pentatonic,
       chords: chords
     }
   end
