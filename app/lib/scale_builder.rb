@@ -17,7 +17,7 @@ class ScaleBuilder
     WHOLE_STEP,
     WHOLE_STEP,
     WHOLE_STEP,
-    HALF_STEP
+    #HALF_STEP
   ]
 
   MINOR_INTERVAL = [
@@ -27,7 +27,7 @@ class ScaleBuilder
     WHOLE_STEP,
     HALF_STEP,
     WHOLE_STEP,
-    WHOLE_STEP
+    #WHOLE_STEP
   ]
 
   CHORD_QUALITIES = {
@@ -113,7 +113,7 @@ class ScaleBuilder
       notes = []
 
       SCALE_DEGREES[:triad].each do |degree|
-        notes << (scale[index] + degree) % scale.length
+        notes << scale[(index + degree) % scale.length]
       end
 
       root_note = NOTES[scale[index]]
