@@ -1,5 +1,23 @@
 <div class="row">
   <div class="column">
+    <%= form_with(url: "/build", method: "post") do %>
+      <div class="row">
+        <div class="column column-20">
+          <%= label_tag(@root, "Root:") %>
+          <%= select_tag :root, options_for_select(@notes, @root) %>
+        </div>
+        <div class="column column-20">
+          <%= label_tag(:type, "Type:") %>
+          <%= select_tag :type, options_for_select(@types, @type) %>
+        </div>
+      </div>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
     <h2>Scale</h2>
     <%= render partial: "large_piano", locals: { notes: @scale[:scale] } %>
   </div>
