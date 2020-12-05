@@ -1,6 +1,6 @@
 class ScaleBuilder
   def self.build(root, type)
-    case type
+    case type.to_sym
     when :major
       MajorScale.for(root)
     when :minor

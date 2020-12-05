@@ -1,6 +1,8 @@
 class Scale
   NOTES = ['C','C#','D','E♭','E','F','F#','G','A♭','A','B♭','B']
 
+  TYPES = [:major, :minor]
+
   STEPS = {
     whole: 2,
     half: 1
