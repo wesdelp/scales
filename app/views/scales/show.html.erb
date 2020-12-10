@@ -8,7 +8,7 @@
         </div>
         <div class="column column-20">
           <%= label_tag(:type, "Type:") %>
-          <%= select_tag :type, options_for_select(@types, @type) %>
+          <%= select_tag :type, options_for_select(types_for_select(@types), @type) %>
         </div>
       </div>
       <%= submit_tag("Search") %>
@@ -19,13 +19,15 @@
 <div class="row">
   <div class="column">
     <h2>Scale</h2>
-    <%= render partial: "large_piano", locals: { notes: @scale[:scale] } %>
+    <%= render partial: "large_piano", locals: { notes: @scale[:scale], root: @scale[:root] } %>
   </div>
 
-  <div class="column">
-    <h2>Pentatonic</h2>
-    <%= render partial: "large_piano", locals: { notes: @scale[:pentatonic] } %>
-  </div>
+  <% if ['major', 'minor'].include?(@type) %>
+    <div class="column">
+      <h2>Pentatonic</h2>
+      <%= render partial: "large_piano", locals: { notes: @scale[:pentatonic], root: @scale[:root] } %>
+    </div>
+  <% end %>
 </div>
 
 <br/>
@@ -38,7 +40,7 @@
         <% slice.each do |chord| %>
           <div class="column column-25">
             <h4><%= "#{chord[:quality]} - #{chord[:name]}" %></h4>
-            <%= render partial: "small_piano", locals: { notes: chord[:notes] } %>
+            <%= render partial: "small_piano", locals: { notes: chord[:notes], root: chord[:root] } %>
           </div>
         <% end %>
       </div>

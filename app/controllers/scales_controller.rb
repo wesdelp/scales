@@ -4,7 +4,7 @@ class ScalesController < ApplicationController
     @types = Scale::TYPES
 
     @root = params[:root] || @notes.first
-    @type = params[:type] || @notes.first
+    @type = params[:type] || @types.first
 
     @scale = ScaleBuilder.build(@root, @type)
   end

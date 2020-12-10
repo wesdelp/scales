@@ -1,4 +1,4 @@
-class MinorScale < Scale
+class HarmonicMinorScale < Scale
   def initialize(root)
     @root = root
   end
@@ -6,7 +6,7 @@ class MinorScale < Scale
   private
 
   def mode
-    'Minor'
+    'Harmonic Minor'
   end
 
   def pentatonic_steps
@@ -20,8 +20,8 @@ class MinorScale < Scale
       STEPS[:whole],
       STEPS[:whole],
       STEPS[:half],
-      STEPS[:whole],
-      # whole step back to root
+      STEPS[:whole] + STEPS[:half],
+      # half step back to root
     ]
   end
 
@@ -29,11 +29,11 @@ class MinorScale < Scale
     {
       'i' => CHORD_QUALITIES[:minor],
       'ii°' => CHORD_QUALITIES[:diminished],
-      'III' => CHORD_QUALITIES[:major],
+      'III+' => CHORD_QUALITIES[:augmented],
       'iv' => CHORD_QUALITIES[:minor],
-      'v' => CHORD_QUALITIES[:minor],
+      'V' => CHORD_QUALITIES[:major],
       'VI' => CHORD_QUALITIES[:major],
-      'VII' => CHORD_QUALITIES[:major]
+      'vii°' => CHORD_QUALITIES[:diminished]
     }
   end
 end

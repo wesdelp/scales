@@ -1,14 +1,14 @@
 <ul class="piano set">
-  <li class="key white c <%= notes.include?(0) ? 'active' : '' %>"></li>
-  <li class="key black cs <%= notes.include?(1) ? 'active' : '' %>"></li>
-  <li class="key white d <%= notes.include?(2) ? 'active' : '' %>"></li>
-  <li class="key black ds <%= notes.include?(3) ? 'active' : '' %>"></li>
-  <li class="key white e <%= notes.include?(4) ? 'active' : '' %>"></li>
-  <li class="key white f <%= notes.include?(5) ? 'active' : '' %>"></li>
-  <li class="key black fs <%= notes.include?(6) ? 'active' : '' %>"></li>
-  <li class="key white g <%= notes.include?(7) ? 'active' : '' %>"></li>
-  <li class="key black gs <%= notes.include?(8) ? 'active' : '' %>"></li>
-  <li class="key white a <%= notes.include?(9) ? 'active' : '' %>"></li>
-  <li class="key black as <%= notes.include?(10) ? 'active' : '' %>"></li>
-  <li class="key white b <%= notes.include?(11) ? 'active' : '' %>"></li>
+  <li class="key white c  <%= key_class(0, notes, root) %>"></li>
+  <li class="key black cs <%= key_class(1, notes, root) %>"></li>
+  <li class="key white d  <%= key_class(2, notes, root) %>"></li>
+  <li class="key black ds <%= key_class(3, notes, root) %>"></li>
+  <li class="key white e  <%= key_class(4, notes, root) %>"></li>
+  <li class="key white f  <%= key_class(5, notes, root) %>"></li>
+  <li class="key black fs <%= key_class(6, notes, root) %>"></li>
+  <li class="key white g  <%= key_class(7, notes, root) %>"></li>
+  <li class="key black gs <%= key_class(8, notes, root) %>"></li>
+  <li class="key white a  <%= key_class(9, notes, root) %>"></li>
+  <li class="key black as <%= key_class(10, notes, root) %>"></li>
+  <li class="key white b  <%= key_class(11, notes, root) %>"></li>
 </ul>

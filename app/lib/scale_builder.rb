@@ -5,6 +5,10 @@ class ScaleBuilder
       MajorScale.for(root)
     when :minor
       MinorScale.for(root)
+    when :melodic_minor
+      MelodicMinorScale.for(root)
+    when :harmonic_minor
+      HarmonicMinorScale.for(root)
     else
       raise 'Scale type not implemented'
     end

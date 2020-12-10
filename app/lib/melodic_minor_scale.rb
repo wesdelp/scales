@@ -1,4 +1,4 @@
-class MajorScale < Scale
+class MelodicMinorScale < Scale
   def initialize(root)
     @root = root
   end
@@ -6,18 +6,18 @@ class MajorScale < Scale
   private
 
   def mode
-    'Major'
+    'Melodic Minor'
   end
 
   def pentatonic_steps
-    [0, 1, 2, 4, 5]
+    [0, 2, 3, 4, 6]
   end
 
   def intervals
     [
       STEPS[:whole],
-      STEPS[:whole],
       STEPS[:half],
+      STEPS[:whole],
       STEPS[:whole],
       STEPS[:whole],
       STEPS[:whole],
@@ -27,12 +27,12 @@ class MajorScale < Scale
 
   def scale_chords
     {
-      'I' => CHORD_QUALITIES[:major],
+      'i' => CHORD_QUALITIES[:minor],
       'ii' => CHORD_QUALITIES[:minor],
-      'iii' => CHORD_QUALITIES[:minor],
+      'III+' => CHORD_QUALITIES[:augmented],
       'IV' => CHORD_QUALITIES[:major],
       'V' => CHORD_QUALITIES[:major],
-      'vi' => CHORD_QUALITIES[:minor],
+      'vi°' => CHORD_QUALITIES[:diminished],
       'vii°' => CHORD_QUALITIES[:diminished]
     }
   end
