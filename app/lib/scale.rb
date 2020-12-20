@@ -1,5 +1,6 @@
 class Scale
   NOTES = ['C','C#','D','E♭','E','F','F#','G','A♭','A','B♭','B']
+  FREQUENCIES = [262, 278, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494]
 
   TYPES = [:major, :minor, :melodic_minor, :harmonic_minor]
 
@@ -30,6 +31,7 @@ class Scale
   def build
     @root_index = NOTES.find_index(@root)
     scale = build_scale
+    frequencies = scale.map { |i| FREQUENCIES[i] }
     pentatonic = pentatonic_steps.map { |i| scale[i] }
     chords = build_chords(scale)
 
@@ -37,6 +39,7 @@ class Scale
       name: "#{@root} #{mode}",
       root: @root_index,
       scale: scale,
+      frequencies: frequencies,
       pentatonic: pentatonic,
       chords: chords
     }
