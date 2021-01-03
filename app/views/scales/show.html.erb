@@ -1,6 +1,4 @@
 <button class="scaleButton" data-notes='<%= @scale[:frequencies] %>'>Play</button>
-<button class="chordsButton" data-chords='<%= [['A4', 'C4', 'E4'], ['C3', 'A4', 'E4'], ['A4', 'C4', 'E4'], ['A4', 'C4', 'E4']] %>'>Play</button>
-
 
 <div class="row">
   <div class="column">
@@ -52,3 +50,7 @@
     <% end %>
   </div>
 </div>
+
+<% @scale[:progressions].each do |progression| %>
+  <button class="chordsButton" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>Play</button>
+<% end %>
