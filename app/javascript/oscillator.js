@@ -125,7 +125,6 @@ async function tearDown() {
     }
 
     if (polySynth) {
-        polySynth.dispose()
         polySynth = null
     }
 
