@@ -36,4 +36,17 @@ class MinorScale < Scale
       'VII' => CHORD_QUALITIES[:major]
     }
   end
+
+  def common_progressions
+    [
+      [ 0, 5, 6 ],
+      [ 0, 3, 6 ],
+      [ 0, 3, 4 ],
+      [ 0, 5, 2, 6 ],
+      [ 0, 3, 4, 0 ],
+      [ 5, 6, 0, 0 ],
+      [ 0, 6, 5, 6 ],
+      [ 0, 3, 0 ]
+    ]
+  end
 end
