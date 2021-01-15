@@ -36,4 +36,17 @@ class MajorScale < Scale
       'vii°' => CHORD_QUALITIES[:diminished]
     }
   end
+
+  def common_progressions
+    [
+      [ 0, 4, 5, 3 ],
+      [ 0, 3, 4 ],
+      [ 0, 5, 3, 4 ],
+      [ 5, 3, 0, 4 ],
+      [ 0, 5, 1, 4 ],
+      [ 0, 2, 3, 4 ],
+      [ 0, 3, 0, 4 ],
+      [ 0, 3, 1, 4 ],
+    ]
+  end
 end

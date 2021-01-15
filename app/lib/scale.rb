@@ -12,6 +12,11 @@ class Scale
     triad: [0, 2, 4]
   }
 
+  FREQUENCY = {
+    base_note: NOTES.find_index('C'),
+    base_frequency: 262
+  }
+
   CHORD_QUALITIES = {
     major: '',
     minor: 'm',
@@ -30,9 +35,10 @@ class Scale
   def build
     @root_index = NOTES.find_index(@root)
     scale = build_scale
-    frequencies = build_frequencies(scale)
+    frequencies = build_scale_frequencies(scale)
     pentatonic = pentatonic_steps.map { |i| scale[i] }
     chords = build_chords(scale)
+    progressions = build_progressions(chords)
 
     {
       name: "#{@root} #{mode}",
@@ -40,7 +46,8 @@ class Scale
       scale: scale,
       frequencies: frequencies,
       pentatonic: pentatonic,
-      chords: chords
+      chords: chords,
+      progressions: progressions
     }
   end
 
@@ -54,12 +61,16 @@ class Scale
     raise NotImplementedError
   end
 
-  def pentatonic_steps
+  def scale_chords
     raise NotImplementedError
   end
 
-  def scale_chords
-    raise NotImplementedError
+  def pentatonic_steps
+    []
+  end
+
+  def common_progressions
+    []
   end
 
   def build_scale
@@ -74,10 +85,7 @@ class Scale
     scale
   end
 
-  def build_frequencies(scale)
-    base_note = NOTES.find_index('C')
-    base_frequency = 262
-
+  def build_scale_frequencies(scale)
     root_note = scale[0]
     frequencies = []
 
@@ -85,18 +93,21 @@ class Scale
       # for listening purposes, ensure notes are always going UP
       # if we are below the root note, extend into the next octave
       note = note < root_note ? note + NOTES.length : note
-      steps_from_base = base_note + note
 
-      frequency = calculate_frequency(base_frequency, steps_from_base)
-      frequencies << frequency
+      frequencies << calculate_frequency(note)
     end
 
     # for listening purposes, add the root note an octave up at the end
-    frequencies << calculate_frequency(base_frequency, root_note + NOTES.length)
+    frequencies << calculate_frequency(root_note + NOTES.length)
   end
 
-  def calculate_frequency(base_frequency, steps_from_base)
-    (base_frequency * 1.059463094359 ** steps_from_base).round(2)
+  def build_chord_frequencies(chord)
+    chord.map { |note| calculate_frequency(note) }
+  end
+
+  def calculate_frequency(note)
+    steps_from_base = FREQUENCY[:base_note] + note
+    (FREQUENCY[:base_frequency] * 1.059463094359 ** steps_from_base).round(2)
   end
 
   def build_chords(scale)
@@ -115,12 +126,23 @@ class Scale
         notes: notes,
         root: scale[index],
         name: "#{root_note}#{symbol}",
-        quality: quality
+        quality: quality,
+        frequencies: build_chord_frequencies(notes)
       }
 
       chords << chord
     end
 
     chords
+  end
+
+  def build_progressions(chords)
+    progressions = []
+
+    common_progressions.each do |progression|
+      progressions << progression.map { |i| chords[i] }
+    end
+
+    progressions
   end
 end

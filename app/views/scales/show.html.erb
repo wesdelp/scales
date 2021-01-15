@@ -1,6 +1,4 @@
 <button class="scaleButton" data-notes='<%= @scale[:frequencies] %>'>Play</button>
-<button class="chordsButton" data-chords='<%= [['A4', 'C4', 'E4'], ['C3', 'A4', 'E4'], ['A4', 'C4', 'E4'], ['A4', 'C4', 'E4']] %>'>Play</button>
-
 
 <div class="row">
   <div class="column">
@@ -26,7 +24,7 @@
     <%= render partial: "large_piano", locals: { notes: @scale[:scale], root: @scale[:root] } %>
   </div>
 
-  <% if ['major', 'minor'].include?(@type) %>
+  <% if @scale[:pentatonic].any? %>
     <div class="column">
       <h2>Pentatonic</h2>
       <%= render partial: "large_piano", locals: { notes: @scale[:pentatonic], root: @scale[:root] } %>
@@ -38,7 +36,7 @@
 
 <div class="row">
   <div class="column">
-    <h3>Chords</h3>
+    <h2>Chords</h2>
     <% @scale[:chords].each_slice(4).to_a.each do |slice| %>
       <div class="row">
         <% slice.each do |chord| %>
@@ -52,3 +50,26 @@
     <% end %>
   </div>
 </div>
+
+<% if @scale[:progressions].any? %>
+  <div class="row">
+    <div class="column">
+      <h2>Common Progressions</h2>
+      <% @scale[:progressions].each do |progression| %>
+        <div class="row">
+          <div class="column column-25">
+            <% progression.each_with_index do |chord, i| %>
+              <%= chord[:quality] %>
+            <% end %>
+          </div>
+          <div class="column">
+            <button class="chordsButton button-clear" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>Play</button>
+            <button class="button-clear">MIDI</button>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

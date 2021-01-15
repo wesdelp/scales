@@ -9,10 +9,6 @@ class HarmonicMinorScale < Scale
     'Harmonic Minor'
   end
 
-  def pentatonic_steps
-    [0, 2, 3, 4, 6]
-  end
-
   def intervals
     [
       STEPS[:whole],
