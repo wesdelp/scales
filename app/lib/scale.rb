@@ -61,12 +61,16 @@ class Scale
     raise NotImplementedError
   end
 
-  def pentatonic_steps
+  def scale_chords
     raise NotImplementedError
   end
 
-  def scale_chords
-    raise NotImplementedError
+  def pentatonic_steps
+    []
+  end
+
+  def common_progressions
+    []
   end
 
   def build_scale
@@ -135,9 +139,7 @@ class Scale
   def build_progressions(chords)
     progressions = []
 
-    p = [[0, 4, 5, 3], [0, 3, 4], [0, 5, 3, 4], [5, 3, 0, 4], [0, 3, 5, 4]]
-
-    p.each do |progression|
+    common_progressions.each do |progression|
       progressions << progression.map { |i| chords[i] }
     end
 
