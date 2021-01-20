@@ -9,6 +9,10 @@ class ScaleBuilder
       MelodicMinorScale.for(root)
     when :harmonic_minor
       HarmonicMinorScale.for(root)
+    when :major_locrian
+      MajorLocrianScale.for(root)
+    when :major_double_harmonic
+      MajorDoubleHarmonicScale.for(root)
     else
       raise 'Scale type not implemented'
     end

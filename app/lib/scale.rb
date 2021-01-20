@@ -1,7 +1,7 @@
 class Scale
   NOTES = ['C','C#','D','E♭','E','F','F#','G','A♭','A','B♭','B']
 
-  TYPES = [:major, :minor, :melodic_minor, :harmonic_minor]
+  TYPES = [:major, :minor, :melodic_minor, :harmonic_minor, :major_locrian, :major_double_harmonic]
 
   STEPS = {
     whole: 2,
