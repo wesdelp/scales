@@ -24,12 +24,12 @@ class MajorDoubleHarmonicScale < Scale
   def scale_chords
     {
       'I' => CHORD_QUALITIES[:major],
-      'ii' => CHORD_QUALITIES[:minor],
+      'II' => CHORD_QUALITIES[:major],
       'iii' => CHORD_QUALITIES[:minor],
-      'IV' => CHORD_QUALITIES[:major],
-      'V' => CHORD_QUALITIES[:major],
-      'vi' => CHORD_QUALITIES[:minor],
-      'vii°' => CHORD_QUALITIES[:diminished]
+      'iv' => CHORD_QUALITIES[:minor],
+      'V' => CHORD_QUALITIES[:flat_five],
+      'vi+' => CHORD_QUALITIES[:augmented],
+      'vii' => CHORD_QUALITIES[:other]
     }
   end
 end

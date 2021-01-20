@@ -1,7 +1,7 @@
 class Scale
   NOTES = ['C','C#','D','E♭','E','F','F#','G','A♭','A','B♭','B']
 
-  TYPES = [:major, :minor, :melodic_minor, :harmonic_minor, :major_locrian, :major_double_harmonic]
+  TYPES = [:major, :minor, :melodic_minor, :harmonic_minor, :major_double_harmonic]
 
   STEPS = {
     whole: 2,
@@ -21,7 +21,9 @@ class Scale
     major: '',
     minor: 'm',
     diminished: 'dim',
-    augmented: 'aug'
+    augmented: 'aug',
+    flat_five: 'b5',
+    other: '?',
   }
 
   def self.for(root)
