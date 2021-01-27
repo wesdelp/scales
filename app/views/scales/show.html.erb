@@ -55,7 +55,7 @@
   <div class="row">
     <div class="column">
       <h2>Common Progressions</h2>
-      <% @scale[:progressions].each do |progression| %>
+      <% @scale[:progressions].each_with_index do |progression, i| %>
         <div class="row">
           <div class="column column-25">
             <% progression.each_with_index do |chord, i| %>
@@ -64,7 +64,7 @@
           </div>
           <div class="column">
             <button class="chordsButton button-clear" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>Play</button>
-            <button class="button-clear">MIDI</button>
+            <%= link_to "MIDI", generate_midi_path(root: @root, type: @type, progression: i), target: "_self", 'data-no-turbolink' => true, class: "button button-clear" %>
           </div>
         </div>
       <% end %>
