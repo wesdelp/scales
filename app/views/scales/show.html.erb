@@ -64,8 +64,7 @@
           </div>
           <div class="column">
             <button class="chordsButton button-clear" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>Play</button>
-            <button class="button-clear">MIDI</button>
-            <%= link_to "MIDI", generate_midi_path(root: @root, type: @type, progression: i), target: "_self", 'data-no-turbolink' => true %>
+            <%= link_to "MIDI", generate_midi_path(root: @root, type: @type, progression: i), target: "_self", 'data-no-turbolink' => true, class: "button button-clear" %>
           </div>
         </div>
       <% end %>
