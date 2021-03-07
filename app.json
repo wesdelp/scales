@@ -1,0 +1,10 @@
+{
+  "name": "scales",
+  "description": "Creative Musical Scales Tool",
+  "website": "https://scales-app.com",
+  "repository": "https://github.com/wesdelp/scales",
+  "buildpacks": [{
+      "url": "heroku/ruby"
+    }
+  ]
+}
