@@ -1,75 +1,95 @@
-<button class="scaleButton" data-notes='<%= @scale[:frequencies] %>'>Play</button>
+<div class="container main">
+  <p class="title">Scales</p>
+  <div class="row">
+    <div class="column">
+      <%= form_with(url: "/build", method: "post") do %>
+        <div class="row row-responsive">
+          <div class="column column-md-20 column-sm-50">
+            <%= label_tag(@root, "Root:") %>
+            <%= select_tag :root, options_for_select(@notes, @root) %>
+          </div>
+          <div class="column column-md-20 column-sm-50">
+            <%= label_tag(:type, "Type:") %>
+            <%= select_tag :type, options_for_select(types_for_select(@types), @type) %>
+          </div>
+        </div>
+        <%= submit_tag("Generate") %>
+      <% end %>
+    </div>
+  </div>
 
-<div class="row">
-  <div class="column">
-    <%= form_with(url: "/build", method: "post") do %>
-      <div class="row">
-        <div class="column column-20">
-          <%= label_tag(@root, "Root:") %>
-          <%= select_tag :root, options_for_select(@notes, @root) %>
-        </div>
-        <div class="column column-20">
-          <%= label_tag(:type, "Type:") %>
-          <%= select_tag :type, options_for_select(types_for_select(@types), @type) %>
-        </div>
+  <div class="row row-responsive">
+    <div class="column column-md-50">
+      <h2 class="scale-header">Notes</h2>
+      <button class="scaleButton button-clear" data-notes='<%= @scale[:frequencies] %>'>
+        <%= fa_icon "volume-up 3x" %>
+      </button>
+      <%= render partial: "large_piano", locals: { notes: @scale[:scale], root: @scale[:root] } %>
+    </div>
+
+    <% if @scale[:pentatonic].any? %>
+      <div class="column column-md-50">
+        <h2>Pentatonic</h2>
+        <%= render partial: "large_piano", locals: { notes: @scale[:pentatonic], root: @scale[:root] } %>
       </div>
-      <%= submit_tag("Search") %>
     <% end %>
   </div>
-</div>
 
-<div class="row">
-  <div class="column">
-    <h2>Scale</h2>
-    <%= render partial: "large_piano", locals: { notes: @scale[:scale], root: @scale[:root] } %>
+  <br/>
+
+  <div class="row">
+    <div class="column">
+      <h2>Chords</h2>
+      <% @scale[:chords].each_slice(4).to_a.each do |slice| %>
+        <div class="row row-responsive">
+          <% slice.each do |chord| %>
+            <div class="column column-md-25 column-sm-50 column-xs-100">
+              <h4>
+                <strong><%= chord[:quality] %></strong>
+                <%= "- #{chord[:name]}" %>
+              </h4>
+              <%= render partial: "small_piano", locals: { notes: chord[:notes], root: chord[:root] } %>
+            </div>
+          <% end %>
+        </div>
+        <br/>
+      <% end %>
+    </div>
   </div>
 
-  <% if @scale[:pentatonic].any? %>
-    <div class="column">
-      <h2>Pentatonic</h2>
-      <%= render partial: "large_piano", locals: { notes: @scale[:pentatonic], root: @scale[:root] } %>
-    </div>
-  <% end %>
-</div>
-
-<br/>
-
-<div class="row">
-  <div class="column">
-    <h2>Chords</h2>
-    <% @scale[:chords].each_slice(4).to_a.each do |slice| %>
-      <div class="row">
-        <% slice.each do |chord| %>
-          <div class="column column-25">
-            <h4><%= "#{chord[:quality]} - #{chord[:name]}" %></h4>
-            <%= render partial: "small_piano", locals: { notes: chord[:notes], root: chord[:root] } %>
+  <% if @scale[:progressions].any? %>
+    <div class="row">
+      <div class="column">
+        <h2>Common Progressions</h2>
+        <% @scale[:progressions].each_with_index do |progression, i| %>
+          <div class="row row-responsive">
+            <div class="column column-md-50 column-sm-60">
+              <% progression.each_with_index do |chord, i| %>
+                <p class="progression-chord"><%= chord[:quality] %></p>
+              <% end %>
+            </div>
+            <div class="column column-md-50 column-sm-40">
+              <button class="chordsButton button-clear progression-button" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>
+                <%= fa_icon "volume-up 2x" %>
+              </button>
+              <%= link_to(generate_midi_path(root: @root, type: @type, progression: i), target: "_self", 'data-no-turbolink' => true, class: "button button-clear progression-button") do %>
+                <%= fa_icon "cloud-download 2x" %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
-      <br/>
-    <% end %>
-  </div>
-</div>
-
-<% if @scale[:progressions].any? %>
-  <div class="row">
-    <div class="column">
-      <h2>Common Progressions</h2>
-      <% @scale[:progressions].each_with_index do |progression, i| %>
-        <div class="row">
-          <div class="column column-25">
-            <% progression.each_with_index do |chord, i| %>
-              <%= chord[:quality] %>
-            <% end %>
-          </div>
-          <div class="column">
-            <button class="chordsButton button-clear" data-chords='<%= progression.map { |chord| chord[:frequencies] } %>'>Play</button>
-            <%= link_to "MIDI", generate_midi_path(root: @root, type: @type, progression: i), target: "_self", 'data-no-turbolink' => true, class: "button button-clear" %>
-          </div>
-        </div>
-      <% end %>
-      </div>
     </div>
-  </div>
+</div>
 <% end %>
-
+<br >
+<footer class="footer">
+  <section class="container">
+    <div class="column">
+      <p>Designed and built by
+      <a href="http://wesdelp.com">Wes Delp</a>
+      </p>
+    </div>
+  </section>
+</footer>
+</div>

@@ -10,11 +10,44 @@
     box-sizing:border-box
 }
 
-#scaleButton {
-    margin-top: 1.5em;
+.title {
+    font-size: 7rem;
+    font-weight: 200;
+}
+
+.scaleButton {
+    margin-left: -1rem;
+}
+
+.scale-header {
+    display: inline-block;
+}
+
+.progression-button {
+    padding: 0;
+    margin-right: 10px;
+}
+
+a {
+    &.progression-button {
+        padding: 0;
+    }
+}
+
+.progression-chord {
+    font-size: 2rem;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    border: 1px solid;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
 }
 
 .piano {
+    display:flex;
     .key {
         &:first-child {
             border-radius: 5px 0 5px 5px;
@@ -48,7 +81,7 @@
         border-left:1px solid #999;
         border-bottom:1px solid #999;
         box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
-        background:#7CCA4D;
+        background:#CDA6E5;
 
     }
     &.active-root {
@@ -76,7 +109,7 @@
 
     &.active {
         box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
-        background:#7CCA4D;
+        background:#CDA6E5;
     }
     &.active-root {
         box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
@@ -96,8 +129,15 @@
     }
 }
 
-.e,.b {
+.e {
     margin:0 1em 0 -1em;
+    &.sm {
+        margin: 0 .5em 0 -.5em;
+    }
+}
+
+.b {
+    margin:0 0 0 -1em;
     &.sm {
         margin: 0 .5em 0 -.5em;
     }
