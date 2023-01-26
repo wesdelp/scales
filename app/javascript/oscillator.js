@@ -134,17 +134,17 @@ async function tearDown() {
     }
 }
 
-document.addEventListener('turbolinks:before-render', () => {
+document.addEventListener('turbo:before-render', () => {
     tearDown();
 });
 
-document.addEventListener('turbolinks:load', () =>
+document.addEventListener('turbo:load', () =>
     setUp(),
     {
         once: true,
     },
 );
 
-document.addEventListener('turbolinks:render', () =>
+document.addEventListener('turbo:render', () =>
     setUp(),
 );
